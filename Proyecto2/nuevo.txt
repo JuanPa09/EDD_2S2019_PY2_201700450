@@ -4,23 +4,15 @@ node[shape=record]
 0->1
 1[label="1"]
 1->2
-2[label="2"]
+2[label="2|Usuario: Admin Contrasena: c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d6f "]
 2->3
-3[label="3|Usuario: Andres Contrasena: ae323c76115d3556be719ae9efb83235b7818543988fd96d8a5bae1bbd4405bb "]
+3[label="3"]
 3->4
-4[label="4|Usuario: Astrid Contrasena: e25710e4f59038ce5cdf63e563f4033e1eb283d827b6d413859e6a2477fb5d3c "]
+4[label="4"]
 4->5
 5[label="5"]
 5->6
-6[label="6|Usuario: Jose Contrasena: 39b2a99273949d712b3caa80812fb10cf6ef6e19bdf9bd557fe3ce96a64d9672 "]
+6[label="6"]
 6->7
 7[label="7"]
-7->8
-8[label="8|Usuario: Meli Contrasena: 0e3c11fafad93e6cf504afa3bbb711f307a093e40814bc192d65f562a7135172 "]
-8->9
-9[label="9|Usuario: Guillermo Contrasena: 1b2f55eb5f051e9148938690070d922a6f9dfc67704f499d1c9cf72c2bf92164 "]
-9->10
-10[label="10"]
-10->11
-11[label="11|Usuario: Juan Contrasena: e25710e4f59038ce5cdf63e563f4033e1eb283d827b6d413859e6a2477fb5d3c "]
 }

@@ -48,6 +48,7 @@ public class Matriz {
             temp=temp.siguiente;
         }
         temp.siguiente=nuevo;
+        nuevo.anterior=temp;
     }
     
     private void crearCarpetaPadre(String carpeta){
@@ -57,16 +58,16 @@ public class Matriz {
             temp=temp.abajo;
         }
         temp.abajo=nuevo;
+        nuevo.arriba=temp;
+        
+        crearCarpetaHijo(carpeta);
+        
     }
     
     private void Enlace(nodoMatriz hijo, nodoMatriz padre){
         
         nodoMatriz nuevo=new nodoMatriz(hijo.hijo,padre.padre);
-        
-        //Buscar Enlaces con carpetas hijas del padre
-        while(padre.siguiente!=null){
-            padre=padre.siguiente;
-        }
+                
         padre.siguiente=nuevo;
         nuevo.anterior=padre;
         
@@ -74,6 +75,9 @@ public class Matriz {
         nuevo.arriba=hijo;
         
     }
+    
+    
+
     
     
     

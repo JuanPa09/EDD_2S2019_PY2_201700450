@@ -15,7 +15,7 @@ public class tablaHash {
     int llenos=0;
     int n=1; //ELEVADO A LA N VECES (UTILIZADO PARA ENCONTRAR EL INDICE)
     Cola cola = new Cola();
-    
+    int Conteo = 0; // Cuenta las veces que se ha hecho unca colision
     public tablaHash(){
         
     }
@@ -51,6 +51,7 @@ public class tablaHash {
             n+=1;
             agregarUsuario(nombre,contra);
         }
+        System.out.println("Se agrego un nuevo usuario: "+nombre+" , "+contra);
         
     }
     
@@ -65,7 +66,6 @@ public class tablaHash {
         }
         
         int miposicion = (int)((Math.pow(totalascii, n))+n)%size;
-        System.out.println(totalascii+"^"+n+"%"+size);
         return miposicion;
         
     }
@@ -80,7 +80,6 @@ public class tablaHash {
     //AGREGA LOS INDICES HASTA EL PRIMO MAS CERCANO
     public void agregarindices(){
         int inicio=Integer.parseInt(fin.indice)+1;
-        System.out.println("Comienzo de busqueda:"+fin.indice);
         int finindice = buscarPrimo(inicio);
         //inicio+=1;
         for (int i = inicio; i <=finindice; i++) {
@@ -107,10 +106,51 @@ public class tablaHash {
             fin=nuevo;
         }
         size+=1;
-        System.out.println("Se agrego nuevo indice "+index+" size: "+size);
         
     }
     
+    public boolean login(String nombre, String contra){
+        System.out.println("login");
+        System.out.println(n);
+        int indice=buscarIndice(nombre);
+        nodoHash temp=raiz;
+        
+        
+        while(Integer.valueOf(temp.indice)!=indice){
+            //System.out.println("Indice temp: "+temp.indice+" Mi indice: "+indice);
+            temp=temp.siguiente;
+            
+        }
+        
+        if (temp.sigdatos==null) {
+            n=1;
+            Conteo=0;
+            return false;
+        }else{
+            
+            if (temp.sigdatos.nombre.equals(nombre) && temp.sigdatos.contra.equals(sha256(contra)) ) {
+                System.out.println("true");
+                n=1;
+                Conteo=0;
+                return true;
+                
+            }else{
+                n+=1;
+                Conteo+=1;
+                if (Conteo==3) {
+                    Conteo=0;
+                    return false;
+                }else{login(nombre,contra);}
+                
+                
+            }
+            
+            
+        }
+    
+        return false;
+    
+    }
     
     
     
@@ -156,11 +196,8 @@ public class tablaHash {
     }
     
     public void comprobarLlenos(){
-        int completo = (int) (size*0.70);
-        //System.out.println("LLenos: "+llenos);
-        //System.out.println("Completo: "+completo);
+        int completo = (int) (size*0.75);
         if (llenos>=completo) {
-            //System.out.println("Se llego a 75%");
             this.agregarindices();
             llenos=0;
             this.nuevosIndices();
@@ -188,9 +225,79 @@ public class tablaHash {
     
     public void nuevosIndices(){
         vaciarTabla();
-        System.out.println("Se vacio la tabla");
         reinsertar();
-        System.out.println("Se reinsertaron los indices");
+    }
+    
+    
+    public boolean Comprobar(String nombre, String contra){
+        int indice=buscarIndice(nombre);
+        nodoHash temp=raiz;
+        
+        
+        while(Integer.valueOf(temp.indice)!=indice){
+            //System.out.println("Indice temp: "+temp.indice+" Mi indice: "+indice);
+            temp=temp.siguiente;
+            
+        }
+        
+        if (temp.sigdatos==null) {
+            n=1;
+            return true;
+        }else{
+            
+            if (temp.sigdatos.nombre==nombre) {
+                n=1;
+                return false;
+            }
+            
+            n+=1;
+            Comprobar(nombre,contra);
+        }
+    
+        return false;
+    }
+    
+    
+    
+    public nodoHash nodo(String nombre, String contra){
+        
+        int indice=buscarIndice(nombre);
+        nodoHash temp=raiz;
+        
+        
+        while(Integer.valueOf(temp.indice)!=indice){
+            //System.out.println("Indice temp: "+temp.indice+" Mi indice: "+indice);
+            temp=temp.siguiente;
+            
+        }
+        
+        if (temp.sigdatos==null) {
+            n=1;
+            Conteo=0;
+            return null;
+        }else{
+            
+            if (temp.sigdatos.nombre.equals(nombre) && temp.sigdatos.contra.equals(sha256(contra)) ) {
+                n=1;
+                Conteo=0;
+                return temp.sigdatos;
+                
+            }else{
+                n+=1;
+                Conteo+=1;
+                if (Conteo==3) {
+                    Conteo=0;
+                    return null;
+                }else{login(nombre,contra);}
+                
+                
+            }
+            
+            
+        }
+    
+        return null;
+    
     }
     
     

@@ -1,9 +1,16 @@
 
+
+
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /*
@@ -27,8 +34,15 @@ public class Show_Image extends javax.swing.JFrame {
      */
     public Show_Image() {
         initComponents();
-        ImageIcon Img = new ImageIcon(getClass().getResource("/Graficar/imagen.png"));
-        jScrollPane1.setViewportView(new JLabel(Img));
+        final String dir = System.getProperty("user.dir");
+        try {
+        BufferedImage bufImg=ImageIO.read(new File(dir+"\\imagen.png"));
+            jLabel1.setIcon(new ImageIcon(bufImg));
+        }
+        catch (IOException ex) {
+            System.out.println("Unable to read image file");
+        }
+        
         
     }
 
@@ -43,18 +57,32 @@ public class Show_Image extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
-        jLabel1.setText("jLabel1");
         jScrollPane1.setViewportView(jLabel1);
+
+        jButton2.setText("Refresh()");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
         );
@@ -62,12 +90,42 @@ public class Show_Image extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        final String dir = System.getProperty("user.dir");
+        try {
+    BufferedImage bufImg=ImageIO.read(new File(dir+"\\imagen.png"));
+    jLabel1.setIcon(new ImageIcon(bufImg));
+    //jlabel.repaint();
+    //works even without repaint
+}
+catch (IOException ex) {
+    System.out.println("Unable to read image file");
+}
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+                final String dir = System.getProperty("user.dir");
+        try {
+    BufferedImage bufImg=ImageIO.read(new File(dir+"\\imagen.png"));
+    jLabel1.setIcon(new ImageIcon(bufImg));
+    //jlabel.repaint();
+    //works even without repaint
+}
+catch (IOException ex) {
+    System.out.println("Unable to read image file");
+}
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -106,6 +164,7 @@ public class Show_Image extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

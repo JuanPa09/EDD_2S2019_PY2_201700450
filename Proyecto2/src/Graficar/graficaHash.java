@@ -53,7 +53,6 @@ public class graficaHash{
 
                 }else{
                     pw.println(temp.indice+"[label=\""+temp.indice+"\"]");
-                    System.out.println("index: "+temp.indice);
                 }
                 
                 if (temp.siguiente!=null) {
@@ -71,10 +70,11 @@ public class graficaHash{
     
     public void graficar(){
         try {
-            Runtime.getRuntime().exec("dot -Tpng nuevo.txt -o src\\Graficar\\imagen.png");
+            Runtime.getRuntime().exec("dot -Tpng nuevo.txt -o imagen.png");
         } catch (IOException ex) {
             
         }
+        
         
     }
 }
