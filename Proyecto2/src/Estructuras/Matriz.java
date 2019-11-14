@@ -10,18 +10,19 @@ package Estructuras;
  * @author juanp
  */
 public class Matriz {
-    nodoMatriz raiz;
-    
+    public nodoMatriz raiz;
     
     public Matriz(){
-        raiz = new nodoMatriz();
+        arbolAVL arbol = new arbolAVL();
+        nodoMatriz node = new nodoMatriz(arbol);
+        this.raiz = node;
     }
     
-    private nodoMatriz buscar_fila(String padre){
+    private nodoMatriz buscar_fila(nodoMatriz padre){
         nodoMatriz temp = raiz;
         
         while(temp!=null){
-            if (temp.padre==padre) {
+            if (temp==padre) {
                 return temp;
             }
             temp=temp.abajo;
@@ -29,11 +30,11 @@ public class Matriz {
         return null;
     }
     
-    private nodoMatriz buscar_columna(String hijo){
+    private nodoMatriz buscar_columna(nodoMatriz hijo){
         nodoMatriz temp = raiz;
         
         while(temp!=null){
-            if (temp.hijo==hijo) {
+            if (temp==hijo) {
                 return temp;
             }
             temp=temp.siguiente;
@@ -41,7 +42,7 @@ public class Matriz {
         return null; 
     }
     
-    private void crearCarpetaHijo(String carpeta){
+    public nodoMatriz crearCarpetaHijo(String carpeta){
         nodoMatriz temp = raiz;
         nodoMatriz nuevo = new nodoMatriz(carpeta);
         while(temp.siguiente!=null){
@@ -49,32 +50,62 @@ public class Matriz {
         }
         temp.siguiente=nuevo;
         nuevo.anterior=temp;
+        
+        System.out.println("Se creo carpeta hijo");
+        return nuevo;
+        
     }
     
-    private void crearCarpetaPadre(String carpeta){
+    public void crearCarpetaPadre(String carpeta){
         nodoMatriz temp = raiz;
-        nodoMatriz nuevo = new nodoMatriz(carpeta);
+        nodoMatriz nuevo = new nodoMatriz(carpeta,new arbolAVL());
         while(temp.abajo!=null){
             temp=temp.abajo;
         }
         temp.abajo=nuevo;
         nuevo.arriba=temp;
+        System.out.println("Se creo carpeta Padre");
+    }
+
+    
+    
+    public void nuevaCarpeta(nodoMatriz padre,String nombreCarpeta){
+        nodoMatriz hijo=crearCarpetaHijo(nombreCarpeta);  
+        nodoMatriz nuevo = new nodoMatriz(padre.carpeta,nombreCarpeta);
         
-        crearCarpetaHijo(carpeta);
-        
+        if (padre.siguiente==null) {
+           padre.siguiente=nuevo;
+           nuevo.anterior=padre;
+           
+           hijo.abajo=nuevo;
+           nuevo.arriba=hijo;
+           
+        }else{
+            nodoMatriz temp=padre;
+            while(temp.siguiente!=null){
+                temp=temp.siguiente;
+            }
+            temp.siguiente=nuevo;
+            nuevo.anterior=temp;
+
+            hijo.abajo=nuevo;
+            nuevo.arriba=hijo;                   
+        }
+        System.out.println("Se enlazaron las carpetas");
+        crearCarpetaPadre(nombreCarpeta);
     }
     
-    private void Enlace(nodoMatriz hijo, nodoMatriz padre){
-        
-        nodoMatriz nuevo=new nodoMatriz(hijo.hijo,padre.padre);
-                
-        padre.siguiente=nuevo;
-        nuevo.anterior=padre;
-        
-        hijo.abajo=nuevo;
-        nuevo.arriba=hijo;
-        
+    public nodoMatriz irCarpeta(nodoMatriz ruta,String carpeta){
+        nodoMatriz temp = ruta;
+        while(temp.carpeta.equals(carpeta)!=true){
+            System.out.println(temp.carpeta);
+            System.out.println(carpeta);
+            temp=temp.abajo;
+        }
+        return temp;
     }
+    
+
     
     
 

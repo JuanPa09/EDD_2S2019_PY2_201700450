@@ -1,4 +1,5 @@
 
+import Estructuras.arbolAVL;
 import Estructuras.tablaHash;
 import Graficar.graficaHash;
 import java.awt.image.BufferedImage;
@@ -23,35 +24,31 @@ public class Inicio {
        tablaHash table = new tablaHash();
        table.crearTabla();
        table.agregarUsuario("Admin", "Admin");
-       //table.agregarUsuario("Juan", "4525612");
-       //table.agregarUsuario("Astrid", "4525612");
-       //table.agregarUsuario("Jose", "M0t0cr05");
-       //table.agregarUsuario("Guillermo", "C0ntrasena");
-       //table.agregarUsuario("Andres", "8494");
-       //table.agregarUsuario("Meli", "8494");
-       //table.imprimirIndices();
-       
-       
-       
-            
-        
-        //NewJFrame frame = new NewJFrame();
-        //frame.show();
-    
        Login login = new Login();
        login.tabla=table;
-       
-       
-       
        login.show();
                
+       
+       
+        /*     
         
-       //Show_Image imagen = new Show_Image();
-       //imagen.show();
-    
-    
+        
+        arbolAVL arbolito = new arbolAVL();
+        
+        arbolito.insertar("Juan", "Mi");
+        arbolito.insertar("Pablo", "Nombre");
+        arbolito.insertar("Oscar", "Diego");
+        arbolito.insertar("Juli", "Jose");
+        arbolito.insertar("Astrid", "asd");
+        arbolito.insertar("Meli", "dasda");
+        arbolito.insertar("Diego", "dasda");
+        arbolito.insertar("Juan", null);
+        arbolito.inOrden(arbolito.raiz);
+        */
+        
     
     }
+     
     
     
 }

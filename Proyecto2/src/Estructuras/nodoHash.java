@@ -16,14 +16,16 @@ public class nodoHash {
     public String indice="";
     public String contra="";
     public String nombre="";
+    public Matriz miscarpetas;
     
     public nodoHash(String indice){
         this.indice=indice;
     }
     
-    public nodoHash(String nombre, String contra){
+    public nodoHash(String nombre, String contra,Matriz carpetas){
         this.nombre=nombre;
         this.contra=contra;
+        this.miscarpetas=carpetas;
     }
     
     

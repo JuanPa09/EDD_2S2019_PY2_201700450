@@ -41,8 +41,9 @@ public class tablaHash {
         }
         
         if (temp.sigdatos==null) {
-            String contrahash=sha256(contra);   
-            nodoHash nuevo = new nodoHash(nombre,contrahash);
+            String contrahash=sha256(contra);
+            Matriz matriz = new Matriz();
+            nodoHash nuevo = new nodoHash(nombre,contrahash,matriz);
             temp.sigdatos=nuevo;
             llenos+=1;
             comprobarLlenos();
