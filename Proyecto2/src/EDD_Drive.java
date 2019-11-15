@@ -6,10 +6,24 @@ import Estructuras.nodoMatriz;
 import Estructuras.tablaHash;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,8 +38,8 @@ import javax.swing.JOptionPane;
 public class EDD_Drive extends javax.swing.JFrame {
     tablaHash tabla;
     nodoHash usuario;
-    nodoMatriz ruta;
-    Matriz matriz;
+    public nodoMatriz ruta=null;
+    public Matriz matriz=null;
     Carpetas carpetas = new Carpetas();
     /**
      * Creates new form EDD_Drive
@@ -72,6 +86,7 @@ public class EDD_Drive extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jButton11 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -202,6 +217,9 @@ public class EDD_Drive extends javax.swing.JFrame {
         );
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setMaximumSize(new java.awt.Dimension(636, 382));
+        jPanel1.setMinimumSize(new java.awt.Dimension(636, 382));
+        jPanel1.setPreferredSize(new java.awt.Dimension(636, 382));
 
         jButton12.setText("Navegar");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +246,7 @@ public class EDD_Drive extends javax.swing.JFrame {
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
 
         jButton9.setText("Cerrar Sesion");
@@ -263,66 +281,72 @@ public class EDD_Drive extends javax.swing.JFrame {
             }
         });
 
+        jButton14.setText("jButton14");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(41, 41, 41)
+                .addComponent(jButton14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton13)
+                .addGap(56, 56, 56)
+                .addComponent(jButton11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton10)
+                .addGap(132, 132, 132)
+                .addComponent(jButton9)
+                .addGap(69, 69, 69))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                        .addComponent(jButton13)
-                        .addGap(56, 56, 56)
-                        .addComponent(jButton11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton10)
-                        .addGap(132, 132, 132)
-                        .addComponent(jButton9)
-                        .addGap(69, 69, 69))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jButton9)
-                            .addComponent(jButton10)
-                            .addComponent(jButton11)
-                            .addComponent(jButton13))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(8, 8, 8)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton9)
+                    .addComponent(jButton10)
+                    .addComponent(jButton11)
+                    .addComponent(jButton13)
+                    .addComponent(jButton14))
+                .addGap(15, 15, 15)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(37, 37, 37)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         pack();
@@ -330,9 +354,10 @@ public class EDD_Drive extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //System.out.println(ruta.carpeta);
-        System.out.println("Paso esto");
         
         matriz.nuevaCarpeta(ruta, this.jTextField1.getText());
+        //carpetas.agregarCarpetas(jPanel1,ruta,matriz,jLabel4);
+        this.agregarCarpetas();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -341,6 +366,9 @@ public class EDD_Drive extends javax.swing.JFrame {
         
         ruta=usuario.miscarpetas.raiz.abajo; //Nodo Carpeta padre ("/")
         matriz=usuario.miscarpetas; //Matriz de carpetas del usuario
+        try{this.agregarCarpetas();}catch(Exception ex){}
+            
+        
     }//GEN-LAST:event_formWindowActivated
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -381,9 +409,112 @@ public class EDD_Drive extends javax.swing.JFrame {
         jPanel1.repaint();
         //this.paintAll(this.getGraphics());
         */
-        carpetas.agregarCarpetas(jPanel1);
+        agregarCarpetas();
     }//GEN-LAST:event_jButton13ActionPerformed
+   
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, jPanel1.getSize());
+    }//GEN-LAST:event_jButton14ActionPerformed
+    
+    //Metodos
+    public void agregarCarpetas(){
+        int n=0;
+        int p=0;
+        nodoMatriz temp = ruta.siguiente;
+        while(temp!=null){
+            if (n==8 || n== 16 || n==24 || n == 32) {
+                p+=1;
+                n=0;
+            }
+            JLabel label = new JLabel(temp.hijo,SwingConstants.CENTER);
+            JLabel labeltexto = new JLabel(temp.hijo,SwingConstants.CENTER);
+        //label.setText(temp.carpeta);
+        label.setVisible(true);
+        label.setOpaque(true);
+        label.setBackground(this.jPanel1.getBackground());
+        labeltexto.setBackground(this.jPanel1.getBackground());
+        
+        
+        
+        
+        
+        int yy = 14+(p*80);
+        int x = 10+(n*80);
+        label.setBounds(new Rectangle(x, yy, 60, 60));
+        labeltexto.setBounds(new Rectangle(x-5, yy+60, 70, 10));
+        labeltexto.setVisible(true);
+        labeltexto.setOpaque(true);
+        final String dir = System.getProperty("user.dir");
+        try {
+        BufferedImage bufImg=ImageIO.read(new File(dir+"\\carpeta.png"));
+            BufferedImage scaleImage = resize(bufImg,60,60);
+            label.setIcon(new ImageIcon(scaleImage));
+        }
+        catch (IOException ex) {
+            System.out.println("Unable to read image file");
+        }
+        nodoMatriz route = ruta;
+        nodoMatriz temporal = temp;
+        Matriz matrix = matriz;
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    TimeUnit.SECONDS.sleep((long) 0.5);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Carpetas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (e.getClickCount()==2) {
+                    System.out.println("Double Clicked");
+                     add(route,temporal,matrix);
+                     
+                    //ruta=matriz.irCarpeta(ruta,temp.hijo);
+                    jLabel4.setText(jLabel4.getText()+"/"+ruta.carpeta);
+                    
+                }else{
+                    System.out.println("Clicked");
+                }
 
+            }
+                
+        });
+        this.jPanel1.add(label);
+        this.jPanel1.add(labeltexto);
+        this.jPanel1.repaint();
+            
+            
+            
+        n+=1;
+        temp=temp.siguiente;
+    }
+    }
+    
+    public void add(nodoMatriz ruta, nodoMatriz temp, Matriz matrix){
+        this.ruta=matrix.irCarpeta(ruta,temp.hijo);
+        Dimension sizee = this.jPanel1.getSize();
+        this.jPanel1.removeAll();
+        try{this.jPanel1.setSize(sizee);}catch(Exception ex){System.out.println("No se pudo krnal");}
+            
+        
+        this.repaint();
+        
+        agregarCarpetas();
+    }
+    
+    public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
+        Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+        BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g2d = dimg.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+
+        return dimg;
+    }  
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -425,6 +556,7 @@ public class EDD_Drive extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

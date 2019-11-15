@@ -51,7 +51,7 @@ public class Matriz {
         temp.siguiente=nuevo;
         nuevo.anterior=temp;
         
-        System.out.println("Se creo carpeta hijo");
+        //System.out.println("Se creo carpeta hijo");
         return nuevo;
         
     }
@@ -64,7 +64,7 @@ public class Matriz {
         }
         temp.abajo=nuevo;
         nuevo.arriba=temp;
-        System.out.println("Se creo carpeta Padre");
+        //System.out.println("Se creo carpeta Padre");
     }
 
     
@@ -91,7 +91,7 @@ public class Matriz {
             hijo.abajo=nuevo;
             nuevo.arriba=hijo;                   
         }
-        System.out.println("Se enlazaron las carpetas");
+        //System.out.println("Se enlazaron las carpetas");
         crearCarpetaPadre(nombreCarpeta);
     }
     
