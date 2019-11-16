@@ -10,13 +10,13 @@ package Estructuras;
  * @author juanp
  */
 public class nodoAVL {
-    String nombre;
+    public String nombre;
     String contenido;
     int fe;
     int height;
     String timestamp;
     String Propietario;
-    nodoAVL left,right;
+    public nodoAVL left,right;
     
     public nodoAVL(String nombre,String contenido){
         this.nombre=nombre;

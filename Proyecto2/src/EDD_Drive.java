@@ -2,11 +2,13 @@
 import Carpetas.Carpetas;
 import Estructuras.Matriz;
 import Estructuras.PilaCarpetas;
+import Estructuras.arbolAVL;
+import Estructuras.nodoAVL;
 import Estructuras.nodoHash;
 import Estructuras.nodoMatriz;
 import Estructuras.tablaHash;
 import Graficar.graficaMatriz;
-import java.awt.Color;
+import Graficar.graficarArbol;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -24,7 +26,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /*
@@ -42,6 +43,7 @@ public class EDD_Drive extends javax.swing.JFrame {
     nodoHash usuario;
     public nodoMatriz ruta=null;
     public Matriz matriz=null;
+    public arbolAVL arbol;
     Carpetas carpetas = new Carpetas();
     PilaCarpetas pilaCarpetas = new PilaCarpetas();
     
@@ -92,6 +94,8 @@ public class EDD_Drive extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -194,6 +198,11 @@ public class EDD_Drive extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         jButton5.setText("Crear");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         jButton6.setText("Modificar");
@@ -285,6 +294,20 @@ public class EDD_Drive extends javax.swing.JFrame {
             }
         });
 
+        jButton11.setText("jButton11");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jButton12.setText("GraficaArbol");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -313,7 +336,11 @@ public class EDD_Drive extends javax.swing.JFrame {
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jButton10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(131, 131, 131)
+                .addComponent(jButton11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -331,34 +358,42 @@ public class EDD_Drive extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jButton9))
-                .addGap(15, 15, 15)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(18, 18, 18)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton10)
+                                    .addComponent(jButton11))
+                                .addGap(1, 1, 1)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton10)
-                        .addGap(1, 1, 1)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton12)
+                        .addContainerGap())))
         );
 
         pack();
@@ -371,6 +406,7 @@ public class EDD_Drive extends javax.swing.JFrame {
         }else{
         matriz.nuevaCarpeta(ruta, this.jTextField1.getText());
         //carpetas.agregarCarpetas(jPanel1,ruta,matriz,jLabel4);
+        refresh();
         this.agregarCarpetas();
         this.jTextField1.setText("");
         }
@@ -381,6 +417,7 @@ public class EDD_Drive extends javax.swing.JFrame {
         this.jLabel1.setText(usuario.nombre);
         
         ruta=usuario.miscarpetas.raiz.abajo; //Nodo Carpeta padre ("/")
+        arbol=ruta.archivos;
         matriz=usuario.miscarpetas; //Matriz de carpetas del usuario
         try{this.agregarCarpetas();}catch(Exception ex){}
             
@@ -398,7 +435,8 @@ public class EDD_Drive extends javax.swing.JFrame {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
         try{
-        ruta=pilaCarpetas.top.carpetaAnterior;  
+        ruta=pilaCarpetas.top.carpetaAnterior;
+        arbol=ruta.archivos;
         jLabel4.setText(pilaCarpetas.top.ruta);
         pilaCarpetas.pop();
         refresh();
@@ -436,6 +474,44 @@ public class EDD_Drive extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField2.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Introduzca un nombre para el archivo");
+            
+        }else{
+            if (jTextField3.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "El archivo no tiene contenido");
+            }else{
+                refresh();
+                matriz.nuevoArchivo(ruta, this.jTextField2.getText(),this.jTextField3.getText());
+                
+                jTextField2.setText("");
+                jTextField3.setText("");
+                this.agregarCarpetas();
+            }
+        
+        }
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        try {
+            graficarArbol graficar = new graficarArbol(arbol.raiz);
+            graficar.crearDot();
+            Show_Image imagen = new Show_Image();
+            imagen.show();
+        } catch (Exception ex) {
+        }
+        
+    }//GEN-LAST:event_jButton12ActionPerformed
     
     //Metodos
     public void agregarCarpetas(){
@@ -449,65 +525,77 @@ public class EDD_Drive extends javax.swing.JFrame {
             }
             JLabel label = new JLabel(temp.hijo,SwingConstants.CENTER);
             JLabel labeltexto = new JLabel(temp.hijo,SwingConstants.CENTER);
-        //label.setText(temp.carpeta);
-        label.setVisible(true);
-        label.setOpaque(true);
-        label.setBackground(this.jPanel1.getBackground());
-        labeltexto.setBackground(this.jPanel1.getBackground());
-        
-        
-        
-        
-        
-        int yy = 14+(p*80);
-        int x = 10+(n*80);
-        label.setBounds(new Rectangle(x, yy, 60, 60));
-        labeltexto.setBounds(new Rectangle(x-5, yy+60, 70, 10));
-        labeltexto.setVisible(true);
-        labeltexto.setOpaque(true);
-        final String dir = System.getProperty("user.dir");
-        try {
-        BufferedImage bufImg=ImageIO.read(new File(dir+"\\carpeta.png"));
-            BufferedImage scaleImage = resize(bufImg,60,60);
-            label.setIcon(new ImageIcon(scaleImage));
-        }
-        catch (IOException ex) {
-            System.out.println("Unable to read image file");
-        }
-        nodoMatriz route = ruta;
-        nodoMatriz temporal = temp;
-        Matriz matrix = matriz;
-        label.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                try {
-                    TimeUnit.SECONDS.sleep((long) 0.5);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Carpetas.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if (e.getClickCount()==2) {
-                    
-                     add(route,temporal,matrix);
-                    jLabel4.setText(jLabel4.getText()+"/"+ruta.carpeta);
-                    
-                }else{
-                    //System.out.println("Clicked");
-                    seleccionarCarpeta(temporal);
+            //label.setText(temp.carpeta);
+            label.setVisible(true);
+            label.setOpaque(true);
+            label.setBackground(this.jPanel1.getBackground());
+            labeltexto.setBackground(this.jPanel1.getBackground());
+
+
+
+
+
+            int yy = 14+(p*80);
+            int x = 10+(n*80);
+            label.setBounds(new Rectangle(x, yy, 60, 60));
+            labeltexto.setBounds(new Rectangle(x-5, yy+60, 70, 10));
+            labeltexto.setVisible(true);
+            labeltexto.setOpaque(true);
+            final String dir = System.getProperty("user.dir");
+            try {
+            BufferedImage bufImg=ImageIO.read(new File(dir+"\\carpeta.png"));
+                BufferedImage scaleImage = resize(bufImg,60,60);
+                label.setIcon(new ImageIcon(scaleImage));
+            }
+            catch (IOException ex) {
+                System.out.println("Unable to read image file");
+            }
+            nodoMatriz route = ruta;
+            nodoMatriz temporal = temp;
+            Matriz matrix = matriz;
+            label.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    try {
+                        TimeUnit.SECONDS.sleep((long) 0.5);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Carpetas.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    if (e.getClickCount()==2) {
+                        jTextField2.setText("");
+                        jTextField3.setText("");
+                         add(route,temporal,matrix);
+                        jLabel4.setText(jLabel4.getText()+"/"+ruta.carpeta);
+
+                    }else{
+                        //System.out.println("Clicked");
+                        seleccionarCarpeta(temporal);
+                    }
+
                 }
 
-            }
-                
-        });
-        this.jPanel1.add(label);
-        this.jPanel1.add(labeltexto);
-        this.jPanel1.repaint();
-            
-            
-            
-        n+=1;
-        temp=temp.siguiente;
+            });
+            this.jPanel1.add(label);
+            this.jPanel1.add(labeltexto);
+            this.jPanel1.repaint();
+
+
+
+            n+=1;
+            temp=temp.siguiente;
+        }
+        this.arbol.NombreContenido(ruta, jPanel1, n-1, p, arbol.raiz,jTextField3);
+        System.out.println("--------------------FIN--------------------");
     }
-    }
+    
+    
+    
+    
+
+    
+    
+    
+    
     
     public void seleccionarCarpeta(nodoMatriz carpeta){
         this.carpetaSeleccionada=carpeta;
@@ -518,6 +606,7 @@ public class EDD_Drive extends javax.swing.JFrame {
     public void add(nodoMatriz ruta, nodoMatriz temp, Matriz matrix){
         pilaCarpetas.insertar(ruta,jLabel4.getText());
         this.ruta=matrix.irCarpeta(ruta,temp.hijo);
+        this.arbol=this.ruta.archivos;
         Dimension sizee = this.jPanel1.getSize();
         this.jPanel1.removeAll();
         try{this.jPanel1.setSize(sizee);}catch(Exception ex){System.out.println("No se pudo krnal");}
@@ -592,6 +681,8 @@ public class EDD_Drive extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

@@ -5,13 +5,17 @@
  */
 package Estructuras;
 
+import Archivos.Archivos;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author juanp
  */
 public class arbolAVL {
     public nodoAVL raiz;
-    
+    Archivos archivos = new Archivos();
     public arbolAVL(){
         raiz=null;
     }
@@ -131,11 +135,27 @@ public class arbolAVL {
     }
     
     //Recorridos
-    public void inOrden(nodoAVL r){
+    public void NombreContenido(nodoMatriz ruta,JPanel panel,int n, int p,nodoAVL r,JTextField content){
+        n+=1;
         if (r!=null) {
-            inOrden(r.left);
+            NombreContenido(ruta,panel,n,p,r.left,content);
+            archivos.agregarArchivos(ruta, panel, n, p, r.nombre, r.contenido,content);
+            
+            if (n==8 || n== 16 || n==24 || n == 32) {
+                p+=1;
+                n=0;
+            }
+            NombreContenido(ruta,panel,n,p,r.right,content);
+        }
+        
+    }
+    
+    
+    public void Contenido(nodoAVL r){
+        if (r!=null) {
+            Contenido(r.left);
             System.out.println(r.nombre+", ");
-            inOrden(r.right);
+            Contenido(r.right);
         }
         
     }

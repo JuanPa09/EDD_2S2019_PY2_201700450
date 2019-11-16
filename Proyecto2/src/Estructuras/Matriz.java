@@ -66,7 +66,12 @@ public class Matriz {
         nuevo.arriba=temp;
         //System.out.println("Se creo carpeta Padre");
     }
-
+    
+    
+    public void nuevoArchivo(nodoMatriz padre,String nombreArchivo,String contenido){
+        padre.archivos.insertar(nombreArchivo, contenido);
+    }
+    
     
     
     public void nuevaCarpeta(nodoMatriz padre,String nombreCarpeta){
