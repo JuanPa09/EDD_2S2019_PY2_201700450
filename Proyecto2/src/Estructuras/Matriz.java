@@ -98,11 +98,71 @@ public class Matriz {
     public nodoMatriz irCarpeta(nodoMatriz ruta,String carpeta){
         nodoMatriz temp = ruta;
         while(temp.carpeta.equals(carpeta)!=true){
-            System.out.println(temp.carpeta);
-            System.out.println(carpeta);
             temp=temp.abajo;
         }
         return temp;
+    }
+    
+    
+    public void modificarNodos(String anterior, String ahora){
+        //Hijo
+        nodoMatriz temp = raiz;
+        while((temp.carpeta.equals(anterior))!=true){
+            temp=temp.siguiente;
+        }
+        temp.carpeta=ahora;
+        
+        //Padre
+        temp=raiz;
+        while(!temp.carpeta.equals(anterior)){
+            temp=temp.abajo;
+        }
+        temp.carpeta=ahora; 
+    }
+    
+    public void eliminar(nodoMatriz nodo){
+        String carpeta=nodo.hijo;
+        nodoMatriz temp = raiz;
+        while((temp.carpeta.equals(carpeta))!=true){
+            temp=temp.siguiente;
+        }
+        
+        temp.anterior.siguiente=temp.siguiente;
+        
+        
+        if (temp.siguiente!=null) {
+            temp.siguiente.anterior=temp.anterior;
+        }
+        
+        
+        
+        temp=raiz;
+        while(temp.carpeta.equals(carpeta)!=true){
+            temp=temp.abajo;
+        }
+        temp.arriba.abajo=temp.siguiente;
+        if (temp.abajo!=null) {
+            temp.abajo.arriba=temp.arriba;
+        }
+        
+        //Buscar el padre para eliminar el siguiente;
+        String padre=nodo.padre;
+        temp=raiz;
+        while(temp.carpeta.equals(padre)!=true){
+            temp=temp.abajo;
+        }
+        
+        while(temp!=nodo){
+            temp=temp.siguiente;
+        }
+        temp.anterior.siguiente=temp.siguiente;
+        
+        
+        if (temp.siguiente!=null) {
+            temp.siguiente.anterior=temp.anterior;
+        }
+        
+    
     }
     
 

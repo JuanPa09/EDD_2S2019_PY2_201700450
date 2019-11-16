@@ -1,18 +1,29 @@
 digraph G{
-node[shape=record]
-0[label="0"]
-0->1
-1[label="1"]
-1->2
-2[label="2|Usuario: Admin Contrasena: c1c224b03cd9bc7b6a86d77f5dace40191766c485cd55dc48caf9ac873335d6f "]
-2->3
-3[label="3"]
-3->4
-4[label="4"]
-4->5
-5[label="5"]
-5->6
-6[label="6"]
-6->7
-7[label="7"]
+node [margin=0 ranksep="0.1", nodesep="0.1" width="0.1" height="0.1" shape=Square ]
+root[group=0]
+root->hijonull0
+root->padrenull0
+padrenull0[label="/" group=0]
+padrenull1[label="Documentos" group=0]
+padrenull2[label="Windows" group=0]
+padreNopor3[label="Fotos/Nopor" group=0]
+hijonull0[label="Documentos" group=0]
+hijonull1[label="Windows" group=1]
+hijonull2[label="Nopor" group=2]
+padrenull0->padrenull1
+padrenull1->padrenull2
+padrenull2->padreNopor3
+hijonull0->hijonull1
+hijonull1->hijonull2
+{rank=same;root;hijonull0;hijonull1;hijonull2}
+node0Documentos0[label="//Documentos" group=0]
+padrenull0->node0Documentos0
+hijonull0->node0Documentos0
+node0Windows1[label="//Windows" group=1]
+node0Documentos0->node0Windows1
+hijonull1->node0Windows1
+{rank=same;padrenull0;node0Documentos0;node0Windows1}
+{rank=same;padrenull1}
+{rank=same;padrenull2}
+{rank=same;padreNopor3}
 }

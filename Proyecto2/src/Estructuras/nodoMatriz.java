@@ -12,6 +12,7 @@ package Estructuras;
 public class nodoMatriz {
     
     public String hijo;
+    public String padre;
     public String root;
     public String carpeta;
     public nodoMatriz arriba=null,abajo=null,anterior=null,siguiente=null;
@@ -39,6 +40,7 @@ public class nodoMatriz {
     public nodoMatriz(String padre,String hijo){
         this.carpeta=padre+"/"+hijo;
         this.hijo=hijo;
+        this.padre=padre;
     }
     
     

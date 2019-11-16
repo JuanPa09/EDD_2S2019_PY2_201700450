@@ -52,7 +52,7 @@ public class tablaHash {
             n+=1;
             agregarUsuario(nombre,contra);
         }
-        System.out.println("Se agrego un nuevo usuario: "+nombre+" , "+contra);
+        //System.out.println("Se agrego un nuevo usuario: "+nombre+" , "+contra);
         
     }
     
@@ -111,8 +111,6 @@ public class tablaHash {
     }
     
     public boolean login(String nombre, String contra){
-        System.out.println("login");
-        System.out.println(n);
         int indice=buscarIndice(nombre);
         nodoHash temp=raiz;
         
@@ -130,7 +128,6 @@ public class tablaHash {
         }else{
             
             if (temp.sigdatos.nombre.equals(nombre) && temp.sigdatos.contra.equals(sha256(contra)) ) {
-                System.out.println("true");
                 n=1;
                 Conteo=0;
                 return true;
