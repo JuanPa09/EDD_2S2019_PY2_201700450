@@ -27,6 +27,7 @@ public class PilaCarpetas {
     
     
     public nodoPilaCarpetas pop(){
+        System.out.println("Se realizo un pop");
         nodoPilaCarpetas temp = top;
             
         top=top.siguiente;

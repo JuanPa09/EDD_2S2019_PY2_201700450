@@ -5,8 +5,6 @@
  */
 package Estructuras;
 
-import Graficar.graficaHash;
-
 /**
  *
  * @author juanp

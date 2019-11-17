@@ -1,12 +1,16 @@
 digraph G{
 node[shape=record]
-Hola
+Practica1[label="Practica1\ndsadasd\n1\n2019/11/17 11:43:53\nAdmin "]
+Practica1->Hola
+Hola[label="Hola\ndasda\n-1\n2019/11/17 11:43:42\nAdmin "]
 Holaa[label="NULL"]
 Hola->Holaa
-Hola->dasd
-dasd
-dasda[label="NULL"]
-dasd->dasda
-dasdb[label="NULL"]
-dasd->dasdb
+Holab[label="NULL"]
+Hola->Holab
+Practica1->dda
+dda[label="dda\ndasdasdasd\n0\n2019/11/17 11:43:58\nAdmin "]
+ddaa[label="NULL"]
+dda->ddaa
+ddab[label="NULL"]
+dda->ddab
 }

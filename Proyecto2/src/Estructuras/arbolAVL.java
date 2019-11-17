@@ -6,6 +6,7 @@
 package Estructuras;
 
 import Archivos.Archivos;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -118,14 +119,15 @@ public class arbolAVL {
         }else{
             subAr.fe=Math.max(obtenerFE(subAr.left), obtenerFE(subAr.right));
         }
+        nuevo.fe=obtenerFE(nuevo);
         return nuevoPadre;
         
     }
     
     
     //Metodo para insertar
-    public void insertar(String nombre,String contenido){
-        nodoAVL nuevo = new nodoAVL(nombre,contenido);
+    public void insertar(String nombre,String contenido,String timestamp, String Propietario){
+        nodoAVL nuevo = new nodoAVL(nombre,contenido,timestamp,Propietario);
         if (raiz==null) {
             raiz=nuevo;
         }else{
@@ -134,18 +136,28 @@ public class arbolAVL {
        
     }
     
-    //Recorridos
-    public void NombreContenido(nodoMatriz ruta,JPanel panel,int n, int p,nodoAVL r,JTextField content){
-        n+=1;
+    public void preorder(nodoAVL r,colaAux cola){
         if (r!=null) {
-            NombreContenido(ruta,panel,n,p,r.left,content);
-            archivos.agregarArchivos(ruta, panel, n, p, r.nombre, r.contenido,content);
-            
+            preorder(r.left,cola);
+            cola.insertar(r);
+            preorder(r.right,cola);
+        }
+    }
+    
+    //Recorridos
+    public void NombreContenido(JPanel panel,int n, int p,nodoAVL r,JTextField content,nodoAVL seleccionado,JLabel mostrar,JLabel anombre,JLabel acontenido,JLabel atimestamp){   
+        colaAux cola = new colaAux();
+        preorder(this.raiz,cola);
+        nodoColaAux temp = cola.raiz;
+        while(temp!=null){
+            n+=1;
             if (n==8 || n== 16 || n==24 || n == 32) {
                 p+=1;
                 n=0;
             }
-            NombreContenido(ruta,panel,n,p,r.right,content);
+            archivos.agregarArchivos(panel, n, p, temp.temp.nombre, temp.temp.contenido,temp.temp.timestamp,content,temp.temp,seleccionado,mostrar,anombre,acontenido,atimestamp);
+            temp=temp.siguiente;
+            
         }
         
     }

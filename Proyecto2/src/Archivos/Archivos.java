@@ -6,7 +6,9 @@
 package Archivos;
 
 import Carpetas.Carpetas;
-import Estructuras.nodoMatriz;
+import Estructuras.nodoAVL;
+import Estructuras.nodoHash;
+import Estructuras.tablaHash;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -21,6 +23,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -33,9 +36,10 @@ public class Archivos {
     
     
     
-    public void agregarArchivos(nodoMatriz ruta,JPanel panel,int n, int p,String nombre,String contenido,JTextField content){
+    
+    public void agregarArchivos(JPanel panel,int n, int p,String nombre,String contenido,String timestamp,JTextField content,nodoAVL actual,nodoAVL seleccionado,JLabel mostrar,JLabel aNombre, JLabel aContenido, JLabel aTimestamp){
        
-            
+      
             
             
             JLabel label = new JLabel(nombre,SwingConstants.CENTER);
@@ -48,13 +52,14 @@ public class Archivos {
 
             int yy = 14+(p*80);
             int x = 10+(n*80);
-            System.out.println("Pos Carpeta: "+nombre+" x: "+x+" y:"+yy  );
+            System.out.println(nombre+" "+x+", "+yy);
             label.setBounds(new Rectangle(x, yy, 60, 60));
             labeltexto.setBounds(new Rectangle(x-5, yy+60, 70, 10));
             labeltexto.setVisible(true);
             labeltexto.setOpaque(true);
             
-            
+            final nodoAVL select=seleccionado;
+            final nodoAVL act=actual;
             final String dir = System.getProperty("user.dir");
             try {
             BufferedImage bufImg=ImageIO.read(new File(dir+"\\archivo.jpg"));
@@ -77,6 +82,12 @@ public class Archivos {
 
                     }else{
                         //System.out.println("Clicked");
+                        
+                        aNombre.setText(nombre);
+                        aContenido.setText(contenido);
+                        aTimestamp.setText(timestamp);
+                        mostrar.setText(nombre);
+                        
                     }
 
                 }
@@ -92,6 +103,10 @@ public class Archivos {
     
     }
     
+    public void add2(nodoAVL seleccion,nodoAVL actua){
+        JOptionPane.showMessageDialog(null, actua.nombre);
+        seleccion = actua;
+    }
     
     
     public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
@@ -103,7 +118,22 @@ public class Archivos {
         g2d.dispose();
 
         return dimg;
-    } 
+    }
+    
+    
+    public void compartir(String usuario,tablaHash tabla,String nombre,String contenido,String timestamp){
+        if (!tabla.Comprobar(usuario, usuario)) {
+            
+            nodoHash temp = tabla.getUsuario(usuario);
+            temp.miscarpetas.raiz.abajo.archivos.insertar(nombre,contenido,timestamp,temp.nombre);
+            JOptionPane.showMessageDialog(null, "El archivo se compartio con "+usuario);
+        }else{
+            JOptionPane.showMessageDialog(null, "El usuario no existe");
+        }
+        
+    
+    
+    }
     
     
     

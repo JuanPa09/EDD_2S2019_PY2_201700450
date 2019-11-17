@@ -68,8 +68,8 @@ public class Matriz {
     }
     
     
-    public void nuevoArchivo(nodoMatriz padre,String nombreArchivo,String contenido){
-        padre.archivos.insertar(nombreArchivo, contenido);
+    public void nuevoArchivo(nodoMatriz padre,String nombreArchivo,String contenido,String timestamp,String propietario){
+        padre.archivos.insertar(nombreArchivo, contenido,timestamp,propietario);
     }
     
     

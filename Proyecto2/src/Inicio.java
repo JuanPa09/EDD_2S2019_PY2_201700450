@@ -3,6 +3,7 @@ import Estructuras.PilaCarpetas;
 import Estructuras.arbolAVL;
 import Estructuras.tablaHash;
 import Graficar.graficaHash;
+import cargaMasiva.cM;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,14 +22,17 @@ import javax.imageio.ImageIO;
 public class Inicio {
     
     public static void main(String[] args) throws IOException {
-       
+       /*
        tablaHash table = new tablaHash();
        table.crearTabla();
        table.agregarUsuario("Admin", "Admin");
        Login login = new Login();
        login.tabla=table;
        login.show();
-       
+       */
+        
+        cM carga = new cM();
+        carga.buscar();
         
        
        

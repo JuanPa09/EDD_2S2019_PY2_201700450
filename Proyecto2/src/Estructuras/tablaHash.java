@@ -229,30 +229,42 @@ public class tablaHash {
     
     public boolean Comprobar(String nombre, String contra){
         int indice=buscarIndice(nombre);
-        nodoHash temp=raiz;
-        
-        
+        nodoHash temp=raiz;  
         while(Integer.valueOf(temp.indice)!=indice){
-            //System.out.println("Indice temp: "+temp.indice+" Mi indice: "+indice);
             temp=temp.siguiente;
-            
-        }
-        
+        }      
         if (temp.sigdatos==null) {
             n=1;
             return true;
-        }else{
-            
-            if (temp.sigdatos.nombre==nombre) {
+        }else{   
+            if (temp.sigdatos.nombre.equals(nombre)) {
                 n=1;
+                System.out.println("Se repite el nombre");
                 return false;
+                
             }
-            
             n+=1;
-            Comprobar(nombre,contra);
+            return Comprobar(nombre,contra);
         }
+    }
     
-        return false;
+    public nodoHash getUsuario(String usuario){
+        int indice=buscarIndice(usuario);
+        nodoHash temp=raiz;  
+        while(Integer.valueOf(temp.indice)!=indice){
+            temp=temp.siguiente;
+        }      
+        if (temp.sigdatos==null) {
+            n=1;
+        }else{   
+            if (temp.sigdatos.nombre.equals(usuario)) {
+                n=1;
+                return temp.sigdatos;
+            }
+            n+=1;
+            getUsuario(usuario);
+        }
+        return null;
     }
     
     

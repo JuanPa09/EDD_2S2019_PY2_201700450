@@ -44,7 +44,7 @@ public class graficarArbol {
     
     
     public void graphArbol(nodoAVL raiz,PrintWriter pw){
-        pw.println(raiz.nombre.replace(".", ""));
+        pw.println(raiz.nombre.replace(".", "")+"[label=\""+raiz.nombre+"\\n"+raiz.contenido+"\\n"+raiz.fe+"\\n"+raiz.timestamp+"\\n"+raiz.Propietario+" \"]");
         if (raiz!=null) {
             //LEFT
             if (raiz.left!=null) {

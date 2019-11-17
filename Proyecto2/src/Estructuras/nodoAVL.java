@@ -11,17 +11,19 @@ package Estructuras;
  */
 public class nodoAVL {
     public String nombre;
-    String contenido;
-    int fe;
+    public String contenido;
+    public int fe;
     int height;
-    String timestamp;
-    String Propietario;
+    public String timestamp;
+    public String Propietario;
     public nodoAVL left,right;
     
-    public nodoAVL(String nombre,String contenido){
+    public nodoAVL(String nombre,String contenido,String timestamp,String Propietario){
         this.nombre=nombre;
         this.contenido=contenido;
         this.fe=0;
+        this.Propietario=Propietario;
+        this.timestamp=timestamp;
         this.left=null;
         this.right=null;
     }
