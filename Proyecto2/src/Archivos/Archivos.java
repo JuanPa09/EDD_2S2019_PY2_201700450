@@ -6,6 +6,7 @@
 package Archivos;
 
 import Carpetas.Carpetas;
+import Estructuras.Bitacora;
 import Estructuras.nodoAVL;
 import Estructuras.nodoHash;
 import Estructuras.tablaHash;
@@ -16,7 +17,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,7 +55,6 @@ public class Archivos {
 
             int yy = 14+(p*80);
             int x = 10+(n*80);
-            System.out.println(nombre+" "+x+", "+yy);
             label.setBounds(new Rectangle(x, yy, 60, 60));
             labeltexto.setBounds(new Rectangle(x-5, yy+60, 70, 10));
             labeltexto.setVisible(true);
@@ -123,16 +125,43 @@ public class Archivos {
     
     public void compartir(String usuario,tablaHash tabla,String nombre,String contenido,String timestamp){
         if (!tabla.Comprobar(usuario, usuario)) {
-            
+            System.out.println("Se va a compartir");
             nodoHash temp = tabla.getUsuario(usuario);
+            System.out.println(temp.nombre);
             temp.miscarpetas.raiz.abajo.archivos.insertar(nombre,contenido,timestamp,temp.nombre);
-            JOptionPane.showMessageDialog(null, "El archivo se compartio con "+usuario);
+            
         }else{
             JOptionPane.showMessageDialog(null, "El usuario no existe");
         }
         
     
     
+    }
+    
+    public void descarga(String nombre, String contenido){
+        FileWriter fw = null;
+        PrintWriter pw = null;
+        try {
+        fw = new FileWriter(nombre);
+        pw=new PrintWriter(fw);
+        pw.println(contenido);
+        
+        pw.close();
+        fw.close();
+        }catch(IOException ex){
+            
+        }
+        abrir(nombre);
+    }
+    
+    public void abrir(String nombre){
+        try {
+            Runtime.getRuntime().exec("notepad "+nombre);
+        } catch (IOException ex) {
+            
+        }
+        
+        
     }
     
     

@@ -12,9 +12,9 @@ package Estructuras;
 public class Bitacora {
     public nodoBitacora top,bottom;
     
-    public void insertar(String nombre){
-        nodoBitacora nuevo= new nodoBitacora(nombre);
-        
+    public void insertar(String nombre,String timestamp){
+        nodoBitacora nuevo= new nodoBitacora(nombre,timestamp);
+        System.out.println("Se ingreso a la bitacora");
         if (top==null) {
             top=nuevo;
             bottom=nuevo;

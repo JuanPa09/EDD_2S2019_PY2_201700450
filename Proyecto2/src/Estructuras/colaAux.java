@@ -18,11 +18,9 @@ public class colaAux {
         if (raiz==null) {
             raiz=nuevo;
             fin=nuevo;
-            System.out.println("Se inserto nuevo nodo");
         }else{
             fin.siguiente=nuevo;
             fin=nuevo;
-            System.out.println("Se encolo");
         }
     }
     

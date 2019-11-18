@@ -12,9 +12,11 @@ package Estructuras;
 public class nodoBitacora {
     public nodoBitacora siguiente;
     public String nombre;
+    public String timestamp;
     
-    public nodoBitacora(String ruta){
+    public nodoBitacora(String ruta,String timestamp){
         this.nombre=ruta;
+        this.timestamp=timestamp;
     }
     
     

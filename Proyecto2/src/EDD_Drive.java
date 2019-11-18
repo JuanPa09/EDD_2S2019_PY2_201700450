@@ -14,6 +14,7 @@ import Estructuras.tablaHash;
 import Graficar.graficaGrafos;
 import Graficar.graficaMatriz;
 import Graficar.graficarArbol;
+import cargaMasiva.cM;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -64,9 +65,9 @@ public class EDD_Drive extends javax.swing.JFrame {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        /*nombre.setVisible(false);
+        nombre.setVisible(false);
         contenido.setVisible(false);
-        timestamp.setVisible(false);*/
+        timestamp.setVisible(false);
        
     }
     
@@ -96,6 +97,7 @@ public class EDD_Drive extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -109,7 +111,6 @@ public class EDD_Drive extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
         nombre = new javax.swing.JLabel();
         contenido = new javax.swing.JLabel();
         timestamp = new javax.swing.JLabel();
@@ -226,18 +227,41 @@ public class EDD_Drive extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         jButton6.setText("Modificar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         jButton7.setText("Eliminar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         jButton8.setText("Subir");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton15.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         jButton15.setText("Compartir");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton15ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
+        jButton16.setText("Descarga");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
             }
         });
 
@@ -260,7 +284,8 @@ public class EDD_Drive extends javax.swing.JFrame {
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
         );
         jPanel3Layout.setVerticalGroup(
@@ -278,7 +303,9 @@ public class EDD_Drive extends javax.swing.JFrame {
                 .addComponent(jButton8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -346,13 +373,6 @@ public class EDD_Drive extends javax.swing.JFrame {
             }
         });
 
-        jButton16.setText("jButton16");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
-
         nombre.setText("jLabel10");
         nombre.setEnabled(false);
 
@@ -377,44 +397,52 @@ public class EDD_Drive extends javax.swing.JFrame {
                         .addComponent(jButton9)
                         .addGap(69, 69, 69))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel4)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton16)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel5)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addContainerGap())
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel8))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel7))
+                                        .addGap(130, 130, 130))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(78, 78, 78)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel6)
-                                                    .addComponent(jLabel8))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel9)
-                                                    .addComponent(jLabel7))
-                                                .addGap(141, 141, 141))
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(contenido)
-                                    .addComponent(nombre)
-                                    .addComponent(timestamp))
-                                .addGap(37, 37, 37))))))
+                                                    .addComponent(contenido)
+                                                    .addComponent(nombre))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(jButton10)
+                                                .addGap(18, 18, 18)))
+                                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(103, 103, 103))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(timestamp)
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,40 +457,38 @@ public class EDD_Drive extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombre)
-                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nombre)
+                                .addGap(4, 4, 4)
+                                .addComponent(contenido)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(contenido))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(timestamp))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel9))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton10)
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton12))))
+                                    .addComponent(jLabel7))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton12)
+                                    .addComponent(jButton13)
+                                    .addComponent(jButton10)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(timestamp))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jButton16)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         nombre.getAccessibleContext().setAccessibleName("nombre");
@@ -478,6 +504,9 @@ public class EDD_Drive extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No hay nombre para la carpeta");
         }else{
         matriz.nuevaCarpeta(ruta, this.jTextField1.getText());
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                LocalDateTime now = LocalDateTime.now();
+        bitacora.insertar(usuario.nombre+" Creo la carpeta "+jTextField1.getText(),dtf.format(now));
         //carpetas.agregarCarpetas(jPanel1,ruta,matriz,jLabel4);
         refresh();
         this.agregarCarpetas();
@@ -490,13 +519,13 @@ public class EDD_Drive extends javax.swing.JFrame {
         
         
         this.jLabel1.setText(usuario.nombre);
-        
+        /*
         ruta=usuario.miscarpetas.raiz.abajo; //Nodo Carpeta padre ("/")
         System.out.println("Se asigna ruta al activarse la ventana");
         arbol=ruta.archivos;
         matriz=usuario.miscarpetas; //Matriz de carpetas del usuario
         try{this.agregarCarpetas();}catch(Exception ex){}
-            
+        */    
         
     }//GEN-LAST:event_formWindowActivated
 
@@ -504,6 +533,8 @@ public class EDD_Drive extends javax.swing.JFrame {
         // TODO add your handling code here:
         Login login = new Login();
         login.tabla=tabla;
+        login.bitacora=bitacora;
+        
         login.show();
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -521,18 +552,26 @@ public class EDD_Drive extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                LocalDateTime now = LocalDateTime.now();
+        bitacora.insertar(usuario.nombre+" modifico la carpeta "+carpetaSeleccionada.hijo+" a "+jTextField1.getText(),dtf.format(now));
         String anterior=carpetaSeleccionada.hijo;
         String ahora=jTextField1.getText();
         this.carpetaSeleccionada.hijo=jTextField1.getText();
         this.carpetaSeleccionada.carpeta=carpetaSeleccionada.padre+"/"+carpetaSeleccionada.hijo;
         jLabel7.setText(carpetaSeleccionada.hijo);
         matriz.modificarNodos(anterior, ahora);
+        
         refresh();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                LocalDateTime now = LocalDateTime.now();
+        bitacora.insertar(usuario.nombre+" elimino la carpeta "+carpetaSeleccionada.hijo,dtf.format(now));
         matriz.eliminar(carpetaSeleccionada);
+        
         refresh();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -560,15 +599,27 @@ public class EDD_Drive extends javax.swing.JFrame {
             if (jTextField3.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "El archivo no tiene contenido");
             }else{
-                System.out.println("Se ejecuto esto");
-                refresh();
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
                 LocalDateTime now = LocalDateTime.now();  
-                 
-                matriz.nuevoArchivo(ruta, this.jTextField2.getText(),this.jTextField3.getText(),dtf.format(now),usuario.nombre);
+                
+                if (ruta.archivos.buscar(jTextField2.getText(), ruta.archivos.raiz)==null) {
+                    matriz.nuevoArchivo(ruta, jTextField2.getText(),this.jTextField3.getText(),dtf.format(now),usuario.nombre);
+                    
+                    bitacora.insertar(usuario.nombre+"Creo nuevo archivo \""+jTextField2.getText()+"\"",dtf.format(now));
+                }else{
+                    int reply = JOptionPane.showConfirmDialog(null, "El archivo ya existe, desea sobreescribirlo?", "Archivo Duplicado", JOptionPane.YES_NO_OPTION);
+                    if (reply == JOptionPane.YES_OPTION) {
+                      nodoAVL temp=ruta.archivos.buscar(this.jTextField2.getText(), ruta.archivos.raiz);
+                      temp.nombre=this.jTextField2.getText();
+                      temp.contenido=this.jTextField3.getText();
+                      
+                    }
+                }
+                
                 
                 jTextField2.setText("");
                 jTextField3.setText("");
+                jLabel9.setText("Ninguno");
                 this.agregarCarpetas();
             }
         
@@ -612,7 +663,9 @@ public class EDD_Drive extends javax.swing.JFrame {
             Archivos archivo = new Archivos();
             try{
                 archivo.compartir(jTextField2.getText(), tabla, nombre.getText(), contenido.getText(),timestamp.getText());
-
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                LocalDateTime now = LocalDateTime.now();
+                bitacora.insertar(usuario.nombre+" compartio un archivo con "+jTextField2.getText(),dtf.format(now));
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, "Ocurrio un error");
             }
@@ -621,11 +674,6 @@ public class EDD_Drive extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, this.archivoSeleccionado);
-    }//GEN-LAST:event_jButton16ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
@@ -637,6 +685,60 @@ public class EDD_Drive extends javax.swing.JFrame {
         matriz=usuario.miscarpetas; //Matriz de carpetas del usuario
         try{this.agregarCarpetas();}catch(Exception ex){}
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        cM carga = new cM(bitacora,tabla);
+        carga.search(ruta,usuario.nombre);
+        refresh();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                LocalDateTime now = LocalDateTime.now();
+        bitacora.insertar(usuario.nombre+" Subio varios archivos a la carpeta "+ruta.carpeta,dtf.format(now));
+        jLabel9.setText("Ninguno");
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        
+        
+        if (ruta.archivos.buscar(nombre.getText(), ruta.archivos.raiz)==null) {
+            JOptionPane.showMessageDialog(null, "El archivo no existe");
+        }else{
+            nodoAVL temp=ruta.archivos.buscar(nombre.getText(), ruta.archivos.raiz);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                LocalDateTime now = LocalDateTime.now();
+            bitacora.insertar(usuario.nombre+" Modifico el archivo "+nombre.getText()+" a "+jTextField2.getText(),dtf.format(now));
+            temp.nombre=this.jTextField2.getText();
+            if (!jTextField3.getText().equals("")) {
+                temp.contenido=this.jTextField3.getText();
+            }
+            
+            refresh();
+        }
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jLabel9.setText("Ninguno");
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        if (jLabel9.getText().equals("Ninguno")) {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun archivo");
+        }else{
+            Archivos archivo = new Archivos();
+            archivo.descarga(nombre.getText(), contenido.getText());
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                LocalDateTime now = LocalDateTime.now();
+            bitacora.insertar(usuario.nombre+" descargo el archivo "+nombre.getText(),dtf.format(now));
+        }
+        jLabel9.setText("Ninguno");
+        
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
     
     //Metodos
     public void agregarCarpetas(){

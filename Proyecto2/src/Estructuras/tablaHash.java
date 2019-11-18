@@ -22,7 +22,7 @@ public class tablaHash {
     
     //CREA LA TABLA CON LOS PRIMEROS 7 INDICES
     public void crearTabla(){
-        for (int i = 0; i <=7; i++) {
+        for (int i = 0; i <7; i++) {
             agregarindice(String.valueOf(i));
         }
     }
@@ -58,6 +58,33 @@ public class tablaHash {
     
     
     
+    public void agregarDeNuevo(String nombre, String contra,Matriz matriz){
+        int indice=buscarIndice(nombre);
+        nodoHash temp=raiz;
+        
+        
+        while(Integer.valueOf(temp.indice)!=indice){
+            //System.out.println("Indice temp: "+temp.indice+" Mi indice: "+indice);
+            temp=temp.siguiente;
+            
+        }
+        
+        if (temp.sigdatos==null) {
+            String contrahash=contra;
+            nodoHash nuevo = new nodoHash(nombre,contrahash,matriz);
+            temp.sigdatos=nuevo;
+            llenos+=1;
+            n=1;
+        }else{
+            n+=1;
+            agregarDeNuevo(nombre,contra,matriz);
+        }
+        //System.out.println("Se agrego un nuevo usuario: "+nombre+" , "+contra);
+        
+    }
+    
+    
+    
     // BUSCAR MI INDICE
     private int buscarIndice(String cadena){
         int totalascii=0;
@@ -65,10 +92,12 @@ public class tablaHash {
             char letra = cadena.charAt(i);
             totalascii+=(int)letra;
         }
-        
-        int miposicion = (int)((Math.pow(totalascii, n))+n)%size;
-        return miposicion;
-        
+        int k=(int)((Math.pow(totalascii, n)));
+        int miposicion = (n*(k))%size;
+        if (miposicion<0) {
+            miposicion=miposicion*(-1);
+        }
+        return miposicion;        
     }
     
     
@@ -83,7 +112,7 @@ public class tablaHash {
         int inicio=Integer.parseInt(fin.indice)+1;
         int finindice = buscarPrimo(inicio);
         //inicio+=1;
-        for (int i = inicio; i <=finindice; i++) {
+        for (int i = inicio; i <finindice; i++) {
             agregarindice(String.valueOf(i));
             
         }
@@ -138,15 +167,13 @@ public class tablaHash {
                 if (Conteo==3) {
                     Conteo=0;
                     return false;
-                }else{login(nombre,contra);}
+                }else{return login(nombre,contra);}
                 
                 
             }
             
             
         }
-    
-        return false;
     
     }
     
@@ -194,10 +221,11 @@ public class tablaHash {
     }
     
     public void comprobarLlenos(){
-        int completo = (int) (size*0.75);
+        int completo = (int) (size*0.70);
         if (llenos>=completo) {
-            this.agregarindices();
             llenos=0;
+            this.agregarindices();
+            
             this.nuevosIndices();
         }
         
@@ -210,7 +238,7 @@ public class tablaHash {
         
         while(temp!=null){
             if (temp.sigdatos!=null) {
-                cola.Ingresar(temp.sigdatos.nombre, temp.sigdatos.contra);
+                cola.Ingresar(temp.sigdatos.nombre, temp.sigdatos.contra,temp.sigdatos.miscarpetas);
                 temp.sigdatos=null;
             }
             temp=temp.siguiente;
@@ -239,7 +267,6 @@ public class tablaHash {
         }else{   
             if (temp.sigdatos.nombre.equals(nombre)) {
                 n=1;
-                System.out.println("Se repite el nombre");
                 return false;
                 
             }
@@ -256,15 +283,15 @@ public class tablaHash {
         }      
         if (temp.sigdatos==null) {
             n=1;
+            return null;
         }else{   
             if (temp.sigdatos.nombre.equals(usuario)) {
                 n=1;
                 return temp.sigdatos;
             }
             n+=1;
-            getUsuario(usuario);
+            return getUsuario(usuario);
         }
-        return null;
     }
     
     
@@ -284,6 +311,7 @@ public class tablaHash {
         if (temp.sigdatos==null) {
             n=1;
             Conteo=0;
+            System.out.println("Se retorno nulo 1");
             return null;
         }else{
             
@@ -297,16 +325,15 @@ public class tablaHash {
                 Conteo+=1;
                 if (Conteo==3) {
                     Conteo=0;
+                    System.out.println("Se retorno nulo 2");
                     return null;
-                }else{login(nombre,contra);}
+                }else{return nodo(nombre,contra);}
                 
                 
             }
             
             
         }
-    
-        return null;
     
     }
     

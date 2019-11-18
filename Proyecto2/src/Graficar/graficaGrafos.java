@@ -45,7 +45,7 @@ public class graficaGrafos {
         
         nodoMatriz tempPadre = raiz.abajo;
         while(tempPadre!=null){
-            pw.println(tempPadre.carpeta.replace("/", "a")+nPadre+"[label=\""+tempPadre.carpeta+"\"]");
+            pw.println(tempPadre.carpeta.replace("/", "a").replace(" ", "_")+nPadre+"[label=\""+tempPadre.carpeta+"\"]");
             if (tempPadre.siguiente!=null) { //Si tiene hijo
                 
                 
@@ -65,7 +65,7 @@ public class graficaGrafos {
                         nHijo+=1;//Esta el la posicion del group
                     }
                     
-                    pw.println(tempPadre.carpeta.replace("/", "a")+nPadre+"->"+tempHijo.carpeta.replace("/", "a")+(nHijo+1));
+                    pw.println(tempPadre.carpeta.replace("/", "a").replace(" ", "_")+nPadre+"->"+tempHijo.carpeta.replace("/", "a").replace(" ", "_")+(nHijo+1));
                     
                     
                     tempPadreHijo=tempPadreHijo.siguiente;
