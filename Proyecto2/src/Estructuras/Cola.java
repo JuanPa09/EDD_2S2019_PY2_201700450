@@ -18,8 +18,8 @@ public class Cola {
     
     
     
-    public void Ingresar(String nombre, String contra){
-        nodoCola nuevo = new nodoCola(nombre,contra);
+    public void Ingresar(String nombre, String contra,Matriz matriz){
+        nodoCola nuevo = new nodoCola(nombre,contra,matriz);
         nodoCola temp = raiz;
         
         if (raiz==null) {
@@ -35,9 +35,10 @@ public class Cola {
     public void Reinsertar(tablaHash tabla){
         nodoCola temp = raiz;
         while(temp!=null){
-            tabla.agregarUsuario(temp.nombre, temp.contra);
+            tabla.agregarDeNuevo(temp.nombre, temp.contra,temp.matriz);
             temp=temp.siguiente;
         }
+        raiz=null;
     
     }
     

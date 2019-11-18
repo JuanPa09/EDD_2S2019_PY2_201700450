@@ -3,6 +3,7 @@
 
 import Archivos.Archivos;
 import Carpetas.Carpetas;
+import Estructuras.Bitacora;
 import Estructuras.Matriz;
 import Estructuras.PilaCarpetas;
 import Estructuras.arbolAVL;
@@ -46,6 +47,7 @@ import javax.swing.SwingConstants;
  */
 public class EDD_Drive extends javax.swing.JFrame {
     public tablaHash tabla;
+    public Bitacora bitacora;
     public nodoHash usuario;
     public nodoMatriz ruta=null;
     public Matriz matriz=null;
@@ -441,12 +443,13 @@ public class EDD_Drive extends javax.swing.JFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel7)
                                     .addComponent(contenido))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(timestamp))))
+                                        .addComponent(timestamp))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel9))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton10)
                                 .addGap(6, 6, 6)

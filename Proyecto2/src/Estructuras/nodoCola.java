@@ -13,10 +13,12 @@ public class nodoCola {
     nodoCola siguiente;
     public String contra="";
     public String nombre="";
+    public Matriz matriz;
     
-    public nodoCola(String nombre, String contra){
+    public nodoCola(String nombre, String contra,Matriz matriz){
         this.nombre=nombre;
         this.contra=contra;
+        this.matriz=matriz;
     }
     
     
